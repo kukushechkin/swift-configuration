@@ -37,7 +37,7 @@ import Synchronization
 /// let result = await future.value
 /// ```
 @available(Configuration 1.0, *)
-package final class TestFuture<T: Sendable>: @unchecked Sendable /* mutex */ {
+package final class TestFuture<T: Sendable>: Sendable {
 
     /// The internal state of the future.
     private enum State {

@@ -121,6 +121,8 @@ public final class Validator<Element: Sendable>: Sendable {
         var ready: Ready = .idle
     }
 
+    // Wraps an async sequence whose instances are not Sendable (only its metatype is)
+    // so it can be handed off to a detached Task for iteration.
     private struct Envelope<Contents>: @unchecked Sendable {
         var contents: Contents
     }

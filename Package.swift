@@ -59,7 +59,6 @@ let enableAllTraitsExplicit = ProcessInfo.processInfo.environment["ENABLE_ALL_TR
 
 let enableAllTraits = spiGenerateDocs || previewDocs || enableAllTraitsExplicit
 let addDoccPlugin = previewDocs || spiGenerateDocs
-let enableAllCIFlags = enableAllTraitsExplicit
 
 traits.insert(
     .default(
@@ -195,10 +194,8 @@ for target in package.targets {
         )
     )
 
-    if enableAllCIFlags {
-        // Ensure all public types are explicitly annotated as Sendable or not Sendable.
-        settings.append(.unsafeFlags(["-Xfrontend", "-require-explicit-sendable"]))
-    }
+    // Ensure all public types are explicitly annotated as Sendable or not Sendable.
+    settings.append(.unsafeFlags(["-Xfrontend", "-require-explicit-sendable"]))
 
     target.swiftSettings = settings
 }
